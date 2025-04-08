@@ -1,4 +1,4 @@
-  <h3><b>Savio 96 Alumni</b></h3>
+  <h3><b>Hotel Booking web App</b></h3>
 
 </div>
 

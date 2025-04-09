@@ -1,11 +1,31 @@
-function App() {
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './layouts/layout';
+
+const App = () => {
   return (
-    <>
-      <div>
-        <h1 className="text-3xl bg-red-800">react APP</h1>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              {' '}
+              <p>Homepage</p>{' '}
+            </Layout>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              {' '}
+              <p>Search page</p>{' '}
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

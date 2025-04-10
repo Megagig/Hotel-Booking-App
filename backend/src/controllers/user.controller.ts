@@ -1,9 +1,19 @@
 import { Request, Response } from 'express';
 import User from '../models/user.model';
 import jwt from 'jsonwebtoken';
+import { validationResult } from 'express-validator';
 
 //Register a new user
 export async function registerUser(req: Request, res: Response) {
+  // 1️⃣ Get validation errors from the request
+  const errors = validationResult(req);
+
+  // 2️⃣ If there are validation errors, return them to client
+  if (!errors.isEmpty()) {
+    res.status(400).json({
+      message: errors.array(),
+    });
+  }
   try {
     //destructuring the request body
     const { email, password, firstName, lastName } = req.body;
@@ -40,7 +50,9 @@ export async function registerUser(req: Request, res: Response) {
     });
 
     //return the User
-    res.status(201).json({ user: others });
+    res
+      .status(201)
+      .json({ message: 'User created successfully', user: others });
   } catch (error) {
     console.log(error);
     res.status(500).json({

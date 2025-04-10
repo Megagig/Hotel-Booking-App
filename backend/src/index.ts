@@ -21,11 +21,6 @@ app.use(cors());
 // Routes
 app.use('/api/users', userRoutes);
 
-//Test endpoint
-app.get('/api/test', async (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Hello from the backend!' });
-});
-
 //Start the server
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

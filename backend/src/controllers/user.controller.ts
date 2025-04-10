@@ -40,7 +40,7 @@ export async function registerUser(req: Request, res: Response) {
     //return the User
     res.status(201).json({ user: newUser });
   } catch (error) {
-    console.error('Error registering user:', error);
+    console.log(error);
     res.status(500).json({
       message: 'Something went wrong',
     });

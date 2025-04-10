@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import connectDB from '../db/dbConnect';
+import userRoutes from './routes/users.route';
 
 const app = express();
 
@@ -16,6 +17,9 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+// Routes
+app.use('/api/users', userRoutes);
 
 //Test endpoint
 app.get('/api/test', async (req: Request, res: Response) => {

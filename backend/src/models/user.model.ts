@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 // Define user type
 export type UserType = {
@@ -33,11 +34,10 @@ const userSchema = new mongoose.Schema({
 // Add password encryption middleware
 userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
-    // Password encryption code will be added here
+    this.password = await bcrypt.hash(this.password, 10);
   }
   next();
 });
-
 // Create and export the model
 const User = mongoose.model<UserType>('User', userSchema);
 export default User;

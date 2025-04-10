@@ -23,7 +23,9 @@ export async function registerUser(req: Request, res: Response) {
       firstName,
       lastName,
     });
-
+    //Modify the returned user object to exclude the password
+    // newUser.password = undefined as any;
+    const { password: savedPassword, ...others } = newUser.toObject();
     // Generate JWT token
     const token = jwt.sign(
       { userId: newUser._id },
@@ -38,7 +40,7 @@ export async function registerUser(req: Request, res: Response) {
     });
 
     //return the User
-    res.status(201).json({ user: newUser });
+    res.status(201).json({ user: others });
   } catch (error) {
     console.log(error);
     res.status(500).json({

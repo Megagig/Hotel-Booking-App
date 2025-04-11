@@ -19,11 +19,14 @@ const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
   // The token is expected to be in the 'auth_token' cookie
   const token = req.cookies.auth_token;
 
+  // If the token is not present, respond with 401 Unauthorized
+  // This means the user is not authenticated
   if (!token) {
     res.status(401).json({ message: 'Unauthorized' });
     return;
   }
 
+  // Verify the token using the secret key
   try {
     const decoded = jwt.verify(
       token,

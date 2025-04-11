@@ -71,6 +71,25 @@ const Register = () => {
           <span className="text-red-500">{errors.password.message}</span>
         )}
       </label>
+      <label className="text-gray-700 text-sm font-bold">
+        Confirm Password
+        <input
+          type="password"
+          className="border rounded w-full py-1 px-2 font-normal"
+          {...register('confirmPassword', {
+            validate: (val: string) => {
+              if (!val) {
+                return 'This field is required';
+              } else if (watch('password') !== val) {
+                return 'Your passwords do not match';
+              }
+            },
+          })}
+        />
+        {errors.confirmPassword && (
+          <span className="text-red-500">{errors.confirmPassword.message}</span>
+        )}
+      </label>
     </form>
   );
 };

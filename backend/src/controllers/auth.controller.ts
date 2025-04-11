@@ -109,7 +109,9 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     });
 
     // Return response with user ID
-    res.status(200).json({ userId: existingUser._id });
+    res
+      .status(200)
+      .json({ message: 'Login Successfully', userId: existingUser._id });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Something went wrong' });

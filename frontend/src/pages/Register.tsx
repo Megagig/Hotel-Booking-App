@@ -90,6 +90,14 @@ const Register = () => {
           <span className="text-red-500">{errors.confirmPassword.message}</span>
         )}
       </label>
+      <span>
+        <button
+          type="submit"
+          className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
+        >
+          Create Account
+        </button>
+      </span>
     </form>
   );
 };

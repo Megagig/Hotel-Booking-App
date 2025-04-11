@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import Toast from '../components/Toast';
 
 // Define Toast Message Type
 type ToastMessage = {

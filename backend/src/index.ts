@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import connectDB from '../db/dbConnect';
+import userRoutes from './routes/users.route';
 
 const app = express();
 
@@ -17,10 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-//Test endpoint
-app.get('/api/test', async (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Hello from the backend!' });
-});
+// Routes
+app.use('/api/users', userRoutes);
 
 //Start the server
 app.listen(process.env.PORT, () => {

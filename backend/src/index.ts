@@ -17,8 +17,15 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
 
+// Enable CORS for the frontend URL
+// This allows the frontend to make requests to the backend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

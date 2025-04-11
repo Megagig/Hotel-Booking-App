@@ -17,8 +17,13 @@ const Register = () => {
     formState: { errors },
   } = useForm<RegisterFormData>();
 
+  // Handle form submission
+  const onSubmit = handleSubmit((data) => {
+    console.log('onSubmit', data);
+  });
+
   return (
-    <form className="flex flex-col gap-5">
+    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
       <h2 className="text-3xl font-bold">Create an account</h2>
       <div className="flex flex-col md:flex-row gap-5">
         <label className="text-gray-700 text-sm font-bold flex-1">

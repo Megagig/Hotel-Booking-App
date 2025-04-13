@@ -1,6 +1,8 @@
 import express from 'express';
 import { loginUser } from '../controllers/auth.controller';
 import { check } from 'express-validator';
+import verifyToken from '../middleware/auth';
+import { Request, Response } from 'express';
 
 // Create a new router instance
 const router = express.Router();
@@ -16,5 +18,16 @@ router.post(
 
   loginUser
 );
+
+router.get('/validate-token', verifyToken, (req: Request, res: Response) => {
+  res.status(200).send({ userId: req.userId });
+});
+
+router.post('/logout', (req: Request, res: Response) => {
+  res.cookie('auth_token', '', {
+    expires: new Date(0),
+  });
+  res.send({});
+});
 
 export default router;

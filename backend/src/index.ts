@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 import connectDB from '../db/dbConnect';
 import userRoutes from './routes/users.route';
 import authRoutes from './routes/auth.route';
@@ -17,8 +18,16 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cookieParser());
 
+// Enable CORS for the frontend URL
+// This allows the frontend to make requests to the backend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

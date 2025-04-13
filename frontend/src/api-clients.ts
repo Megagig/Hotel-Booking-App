@@ -50,3 +50,15 @@ export const validateToken = async () => {
 
   return response.json();
 };
+
+//Create the sign out API call: This function will send a POST request to the server to log out the user.
+export const signOut = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    throw new Error('Error during sign out');
+  }
+};

@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import * as apiClient from '../api-clients';
 
 export type SignInFormData = {
   email: string;
@@ -11,6 +13,16 @@ const SignIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm<SignInFormData>();
+
+  const mutation = useMutation(apiClient.signIn, {
+    onSuccess: async () => {
+      // showToast({ message: 'Sign in successful', type: 'SUCCESS' });
+      // navigate('/');
+    },
+    onError: (error: Error) => {
+      // showToast({ message: error.message, type: 'ERROR' });
+    },
+  });
 
   return (
     <form className="flex flex-col gap-5">

@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from '../db/dbConnect';
 import userRoutes from './routes/users.route';
 import authRoutes from './routes/auth.route';
+import path from 'path';
 
 const app = express();
 
@@ -28,6 +29,9 @@ app.use(
     credentials: true,
   })
 );
+
+// Serve static files from the frontend build directory
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

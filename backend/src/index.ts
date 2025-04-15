@@ -9,7 +9,7 @@ import authRoutes from './routes/auth.route';
 const app = express();
 
 // Set up environment variables
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 // Database connection
 

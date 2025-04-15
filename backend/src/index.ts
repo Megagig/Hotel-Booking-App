@@ -1,12 +1,16 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import cookieParser from 'cookie-parser';
 import connectDB from '../db/dbConnect';
+import userRoutes from './routes/users.route';
+import authRoutes from './routes/auth.route';
+import path from 'path';
 
 const app = express();
 
 // Set up environment variables
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 // Database connection
 
@@ -15,12 +19,22 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cookieParser());
 
-//Test endpoint
-app.get('/api/test', async (req: Request, res: Response) => {
-  res.status(200).json({ message: 'Hello from the backend!' });
-});
+// Enable CORS for the frontend URL
+// This allows the frontend to make requests to the backend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
+
+// Serve static files from the frontend build directory
+app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 //Start the server
 app.listen(process.env.PORT, () => {

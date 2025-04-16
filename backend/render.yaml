@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: hotel-booking-backend
+    name: hotel-booking-api
     env: node
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npm start
-    nodeVersion: 22.14.0
+    nodeVersion: 18.19.0
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production

@@ -1,11 +1,12 @@
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
+import config from './config';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 //Create the register API call: This function will send a POST request to the server to create a new user.
 export const register = async (formData: RegisterFormData) => {
-  const response = await fetch(`${API_BASE_URL}/api/users/register`, {
+  const response = await fetch(`${config.apiBaseUrl}/api/users/register`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -23,7 +24,7 @@ export const register = async (formData: RegisterFormData) => {
 
 //Create the sign in API call: This function will send a POST request to the server with the user's email and password.
 export const signIn = async (formData: SignInFormData) => {
-  const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+  const response = await fetch(`${config.apiBaseUrl}/api/auth/login`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -42,7 +43,7 @@ export const signIn = async (formData: SignInFormData) => {
 };
 //Create the validate token API call: This function will send a GET request to the server to check if the token is valid.
 export const validateToken = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
+  const response = await fetch(`${config.apiBaseUrl}/api/auth/validate-token`, {
     credentials: 'include',
   });
 
@@ -55,7 +56,7 @@ export const validateToken = async () => {
 
 //Create the sign out API call: This function will send a POST request to the server to log out the user.
 export const signOut = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+  const response = await fetch(`${config.apiBaseUrl}/api/auth/logout`, {
     method: 'POST',
     credentials: 'include',
   });

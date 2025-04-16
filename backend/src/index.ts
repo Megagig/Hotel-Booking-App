@@ -25,9 +25,33 @@ app.use(cookieParser());
 
 // Enable CORS for the frontend URL
 // This allows the frontend to make requests to the backend
+// app.use(
+//   cors({
+//     origin: process.env.FRONTEND_URL,
+//     credentials: true,
+//   })
+// );
+
+const allowedOrigins = [
+  'https://hotel-booking-app-06gf.onrender.com',
+  'http://localhost:5173',
+  'http://localhost:7000',
+];
+
+// Enable CORS for the frontend URL
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          'The CORS policy for this site does not allow access from the specified Origin.';
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   })
 );

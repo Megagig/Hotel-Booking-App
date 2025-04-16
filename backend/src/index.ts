@@ -12,6 +12,8 @@ const app = express();
 // Set up environment variables
 const PORT = process.env.PORT || 7000;
 
+const frontendPath = path.join(__dirname, '../../../frontend/dist');
+
 // Database connection
 
 connectDB();
@@ -29,21 +31,28 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.static(frontendPath));
 
-// // Serve static files from the frontend build directory
+// Add a debug route
+app.get('/', (req: Request, res: Response) => {
+  console.log('Root route hit');
+  console.log('Attempting to serve:', path.join(frontendPath, 'index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
+// Serve static files from the frontend build directory
 // app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
-// Serve static files from the frontend build directory
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
-// Handle frontend routes - Add this before your static file serving
+// Catch-all route
 app.get('*', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 //Start the server
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+  console.log('Static files being served from:', frontendPath);
 });

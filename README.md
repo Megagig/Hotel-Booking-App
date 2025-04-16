@@ -49,7 +49,7 @@
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://remotive.com/">Remotive API</a></li>
+    <li><a href="https://mongodb.com/">MONGODB</a></li>
   </ul>
 </details>
 
@@ -63,7 +63,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](coming soon)
+- [Live Demo Link](https://hotel-booking-app-06gf.onrender.com/)
 
 - [Walkthrough Video ](coming soon)
 
@@ -88,7 +88,7 @@ Clone this repository to your desired folder:
 
 ```sh
   cd my-folder
-  git clone git@github.com:Megagig/Remote-Job-App.git
+  git clone git@github.com:Megagig/Hotel-Booking-App.git
 ```
 
 ### Install
@@ -96,7 +96,7 @@ Clone this repository to your desired folder:
 Install this project with:
 
 ```sh
-  cd savio96alumni
+  cd hotel-booking-app
   npm install
   yam install
 ```

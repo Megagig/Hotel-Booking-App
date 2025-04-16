@@ -1,7 +1,9 @@
 import { RegisterFormData } from './pages/Register';
 import { SignInFormData } from './pages/SignIn';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://hotel-booking-app-api-tau.vercel.app';
 
 //Create the register API call: This function will send a POST request to the server to create a new user.
 export const register = async (formData: RegisterFormData) => {

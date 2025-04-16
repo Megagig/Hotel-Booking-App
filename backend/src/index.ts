@@ -30,6 +30,10 @@ app.use(
   })
 );
 
+// Routes
+app.get('/', (req: Request, res: Response) => {
+  res.send('API is running...');
+});
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes

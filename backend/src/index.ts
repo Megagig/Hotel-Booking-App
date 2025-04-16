@@ -25,15 +25,11 @@ app.use(cookieParser());
 // This allows the frontend to make requests to the backend
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
 
-// root Route
-app.get('/', (req: Request, res: Response) => {
-  res.send('API is running...');
-});
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes

@@ -31,7 +31,7 @@ app.use(
 );
 
 // Serve static files from the frontend build directory
-app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+// app.use(express.static(path.join(__dirname, '../../frontend/dist')));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);

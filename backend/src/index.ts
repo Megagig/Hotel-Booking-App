@@ -6,6 +6,15 @@ import connectDB from '../db/dbConnect';
 import userRoutes from './routes/users.route';
 import authRoutes from './routes/auth.route';
 import path from 'path';
+import { v2 as cloudinary } from 'cloudinary';
+
+// Initialize Cloudinary with your cloud name, API key, and API secret
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+// Initialize Express app
 
 const app = express();
 

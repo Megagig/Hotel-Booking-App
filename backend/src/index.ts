@@ -25,12 +25,12 @@ app.use(cookieParser());
 // This allows the frontend to make requests to the backend
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
     credentials: true,
   })
 );
 
-// Routes
+// root Route
 app.get('/', (req: Request, res: Response) => {
   res.send('API is running...');
 });

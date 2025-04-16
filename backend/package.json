@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "npm install && npx tsc",
-    "postbuild": "cp package.json dist/ && cd dist && npm install --production",
-    "start": "node ./dist/src/index.js",
-    "vercel-build": "npm run build",
+    "start": "node ./dist/index.js",
     "e2e": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon"
   },
   "author": "Obi Anthony",
